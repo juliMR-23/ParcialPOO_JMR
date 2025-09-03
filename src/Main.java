@@ -17,7 +17,8 @@ public class Main {
         System.out.println("6. Marca con más incidentes");
         System.out.println("7. País más comúm y cantidad carros");
         System.out.println("8. Incidentes de cada dueño");
-        System.out.println("9.Salir");
+        System.out.println("9. Ingresar incidente");
+        System.out.println("10. Salir");
     }
     public static void main(String[] args) {
 
@@ -181,7 +182,6 @@ public class Main {
                     int anio = Integer.parseInt(sc.nextLine());
 
 
-
                     Carro carro = new Carro(placa, modelo, anio);
 
                     int fin=0;
@@ -331,7 +331,44 @@ public class Main {
                     break;
 
                 case 9:
+                    System.out.print("Ingrese el código del incidente: ");
+                    long codigo = Long.parseLong(sc.nextLine());
 
+                    System.out.print("Ingrese el tipo de incidente: ");
+                    String tipo = sc.nextLine();
+
+                    Incidente incidente = new Incidente(codigo, tipo, new Date(), null);
+
+                    fin=0;
+                    while(fin==0){
+                        System.out.println("Ingrese la cedula del dueño que  participa en el incidente: ");
+                        long cedulaD = Long.parseLong(sc.nextLine());
+                        for(int i=0; i<duenos.size(); i++){
+                            if(duenos.get(i).getCedula() == cedulaD){
+                                if(incidente.getDuenos().contains(duenos.get(i))){
+                                    System.out.println("Este dueño ya esta registrado");
+                                    fin=1; break;
+                                }
+                                carro.vincularDueno(duenos.get(i));
+                                System.out.println("Dueño registrado");
+                                fin=1; break;
+                            }
+                        }
+                        if(fin==1){
+                            System.out.println("Digite 0 si desea ingresar otro dueño");
+                            fin = Integer.parseInt(sc.nextLine());
+
+                        }else
+                            System.out.println("La cedula no existe, intente de nuevo");
+                    }
+
+
+
+
+                    break;
+
+                case 10:
+                    salir =  true;
                     break;
 
                 default:
