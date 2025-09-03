@@ -157,7 +157,7 @@ public class Main {
             switch(opcion){
                 case 1:
                     System.out.print("Ingrese el id de la marca: ");
-                    long id = Long.parseLong(sc.nextLine()); // Consumir salto de línea pendiente
+                    long id = Long.parseLong(sc.nextLine());
 
                     System.out.print("Ingrese el nombre de la marca: ");
                     String nombre = sc.nextLine();
@@ -178,24 +178,59 @@ public class Main {
                     String modelo = sc.nextLine();
 
                     System.out.print("Ingrese el año de lanzamiento del carro: ");
-                    int anio = sc.nextInt();
+                    int anio = Integer.parseInt(sc.nextLine());
+
+
 
                     Carro carro = new Carro(placa, modelo, anio);
 
-                    System.out.println("Ingrese el id de la marca del carro: ");
-                    long idMarca = Long.parseLong(sc.nextLine());
+                    int fin=0;
 
-                    for(int i=0; i<marcas.size(); i++){
-                        if(marcas.get(i).getId() == idMarca){
-                            carro.setMarca(marcas.get(i));
+                    while(fin==0){
+                        System.out.println("Ingrese el id de la marca del carro: ");
+                        long idMarca = Long.parseLong(sc.nextLine());
+                        for(int i=0; i<marcas.size(); i++){
+                            if(marcas.get(i).getId() == idMarca){
+                                carro.setMarca(marcas.get(i));
+                                fin=1; break;
+                            }
                         }
+                        if(fin==1){
+                            System.out.println("Carro registrado");
+                            break;
+                        }
+                        System.out.println("El id no existe, intente de nuevo");
                     }
+
+                    fin=0;
+                    while(fin==0){
+                        System.out.println("Ingrese la cedula del dueño del carro: ");
+                        long cedulaD = Long.parseLong(sc.nextLine());
+                        for(int i=0; i<duenos.size(); i++){
+                            if(duenos.get(i).getCedula() == cedulaD){
+                                if(carro.getDuenos().contains(duenos.get(i))){
+                                    System.out.println("Este dueño ya esta registrado");
+                                    fin=1; break;
+                                }
+                                carro.vincularDueno(duenos.get(i));
+                                System.out.println("Dueño registrado");
+                                fin=1; break;
+                            }
+                        }
+                        if(fin==1){
+                            System.out.println("Digite 0 si desea ingresar otro dueño");
+                            fin = Integer.parseInt(sc.nextLine());
+
+                        }else
+                            System.out.println("El id no existe, intente de nuevo");
+                    }
+
+                    carros.add(carro);
 
                     break;
                 case 3:
                     System.out.print("Ingrese la cédula del dueño: ");
-                    long cedula = sc.nextLong();
-                    sc.nextLine(); // Limpiar buffer
+                    long cedula =Long.parseLong(sc.nextLine());
 
                     System.out.print("Ingrese el nombre del dueño: ");
                     String nombreDueno = sc.nextLine();
@@ -207,6 +242,7 @@ public class Main {
                     String telefono = sc.nextLine();
 
                     Dueno dueno = new Dueno(cedula, nombreDueno, apellido, telefono);
+                    duenos.add(dueno);
 
                     break;
                 case 4:
