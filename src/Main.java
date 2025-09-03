@@ -24,10 +24,10 @@ public class Main {
 
         Marca marca1 = new Marca(1L, "Hyundai", "Canada");
         Marca marca2 = new Marca(2L, "Toyota", "Japon");
-        Marca marca3 = new Marca(3L, "Ford", "Alemania");
+        Marca marca3 = new Marca(3L, "Ford", "Estados Unidos");
         Marca marca4 = new Marca(4L, "BMW", "Alemania");
         Marca marca5 = new Marca(5L, "Renault", "Francia");
-        Marca marca6 = new Marca(6L, "Fiat", "Alemania");
+        Marca marca6 = new Marca(6L, "Fiat", "Italia");
 
         Carro carro1 = new Carro("ABC111", "2", 2010);
         Carro carro2 = new Carro("ABC222", "5", 2005);
@@ -135,7 +135,6 @@ public class Main {
         Incidente incidente8 = new Incidente(8L, "accidente", new Date(), "3165432109");
         Incidente incidente9 = new Incidente(9L, "choque", new Date(), "3109876543");
         Incidente incidente10 = new Incidente(10L, "robo", new Date(), "3198765432");
-
          */
 
         dueno3.agregarIncidente(incidente1);
@@ -167,6 +166,7 @@ public class Main {
                     String pais = sc.nextLine();
 
                     Marca marca = new Marca(id, nombre, pais);
+                    marcas.add(marca);
 
                     break;
 
