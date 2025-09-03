@@ -128,21 +128,15 @@ public class Main {
         Incidente incidente1 = new Incidente(1L, "choque", new Date(), "30448329384");
         Incidente incidente2 = new Incidente(2L, "robo", new Date(), "3101234567");
         Incidente incidente3 = new Incidente(3L, "vandalismo", new Date(), "3159876543");
-        /*
         Incidente incidente4 = new Incidente(4L, "accidente", new Date(), "3204567890");
         Incidente incidente5 = new Incidente(5L, "choque", new Date(), "3112345678");
-        Incidente incidente6 = new Incidente(6L, "robo", new Date(), "3187654321");
-        Incidente incidente7 = new Incidente(7L, "vandalismo", new Date(), "3123456789");
-        Incidente incidente8 = new Incidente(8L, "accidente", new Date(), "3165432109");
-        Incidente incidente9 = new Incidente(9L, "choque", new Date(), "3109876543");
-        Incidente incidente10 = new Incidente(10L, "robo", new Date(), "3198765432");
-         */
+
 
         dueno3.agregarIncidente(incidente1);
         dueno3.agregarIncidente(incidente2);
         dueno4.agregarIncidente(incidente3);
-        dueno5.agregarIncidente(incidente1);
-        dueno7.agregarIncidente(incidente2);
+        dueno5.agregarIncidente(incidente4);
+        dueno7.agregarIncidente(incidente5);
 
 
 
@@ -345,21 +339,14 @@ public class Main {
                         long cedulaD = Long.parseLong(sc.nextLine());
                         for(int i=0; i<duenos.size(); i++){
                             if(duenos.get(i).getCedula() == cedulaD){
-                                if(incidente.getDuenos().contains(duenos.get(i))){
-                                    System.out.println("Este dueño ya esta registrado");
-                                    fin=1; break;
-                                }
-                                carro.vincularDueno(duenos.get(i));
-                                System.out.println("Dueño registrado");
+                                duenos.get(i).agregarIncidente(incidente);
+                                System.out.println("Incidente registrado");
                                 fin=1; break;
                             }
                         }
-                        if(fin==1){
-                            System.out.println("Digite 0 si desea ingresar otro dueño");
-                            fin = Integer.parseInt(sc.nextLine());
-
-                        }else
+                        if(fin==0){
                             System.out.println("La cedula no existe, intente de nuevo");
+                        }
                     }
 
 
