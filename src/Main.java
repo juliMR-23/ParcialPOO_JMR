@@ -353,26 +353,28 @@ public class Main {
                     System.out.println("Ingresa la placa del carro que deseas desvincular:");
                     p=sc.nextLine();
                     find=0;
-                    for(int i = 0; i < dueno.getCarros().size(); i++){
-                        if(dueno.getCarros().get(i).getPlaca().equals(p)){
-
-                            find=1;
+                    for(int i = 0; i < dueno.getCarros().size(); i++) {
+                        if (dueno.getCarros().get(i).getPlaca().equals(p)) {
+                            dueno.getCarros().get(i).desvincularDueno(dueno);
+                            System.out.println("Desvinculado");
+                            find = 1;
                         }
+                    }
+                    if(find==0){
+                        System.out.println("No se pudo encontrar dicho carro");
                     }
                     break;
 
 
                 case 7:
-                    int max=0, acumula=0;
+                    int max=0, acumula;
                     Marca marcaMax=null;
                     for(int i = 0; i < marcas.size(); i++){
                         acumula = 0;
                         for(int j = 0; j < marcas.get(i).getCarros().size(); j++){
-                            if(marcas.get(i).getCarros().get(j).getDuenos().size()>max){
                                 acumula+=marcas.get(i).getCarros().get(j).getDuenos().size();
                                 //cantidad de dueños de cada carro = cantidad compradores
                                 //los va acumulando porque hay varios carros, cada uno con varios compradores
-                            }
                         }
                         if(acumula>max){
                             marcaMax=marcas.get(i);
@@ -453,7 +455,7 @@ public class Main {
 
             }
             if(!salir){
-                System.out.println("Digite cualquier numero para continuar: ");
+                System.out.println("Presione ENTER para continuar: ");
                 String n = sc.nextLine();
             }
         }
